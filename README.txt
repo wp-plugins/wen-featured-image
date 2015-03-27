@@ -14,6 +14,8 @@ Add featured image column in listings. Add/change/remove featured image directly
 
 <h3>WEN Featured Image</h3>WEN Featured Image helps you to manage featured image for your posts or pages in easy way. Featured image is displayed in the separate column in the listings. You can easily add/edit/remove featured image from the listing page. You can also force featured image for selected post types.
 
+Plugin: [Home Page](http://wenthemes.com/item/wordpress-plugins/wen-featured-image/)
+
 If you like this plugin, please [rate and review](http://wordpress.org/support/view/plugin-reviews/wen-featured-image).
 If you have any question, suggestion or issue, please [post here](http://wordpress.org/support/plugin/wen-featured-image).
 
