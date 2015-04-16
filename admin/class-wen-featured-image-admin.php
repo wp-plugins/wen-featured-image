@@ -795,4 +795,76 @@ class Wen_Featured_Image_Admin {
 
   }
 
+  /**
+   * Filtering dropdown in the listing.
+   *
+   * @since    1.0.1
+   */
+  function wfi_table_filtering(){
+
+    global $wpdb, $typenow ;
+
+    $allowed = array();
+    foreach ( $this->options['image_column_cpt'] as $post_type => $val ) {
+        $allowed[]= $val;
+    }
+    if ( ! in_array($typenow,  $allowed )  ) {
+        return;
+    }
+    $selected_now = '';
+    if ( isset( $_GET['filter-wfi'] ) ) {
+      $selected_now = esc_attr( $_GET['filter-wfi'] );
+    }
+    echo '<select name="filter-wfi" id="filter-wfi">';
+    echo '<option value="" >'. __( 'Show All', 'wen-featured-image' ) .'</option>';
+    echo '<option value="yes" '.selected( $selected_now, 'yes', false ) .'>'. __( 'Featured Image', 'wen-featured-image' ) .'</option>';
+    echo '<option value="no" '.selected( $selected_now, 'no', false ) .'>'. __( 'No Featured Image', 'wen-featured-image' ) .'</option>';
+    echo '</select>';
+
+  }
+
+  /**
+   * Query filtering in the listing.
+   *
+   * @since    1.0.1
+   */
+  function wfi_query_filtering( $query ){
+
+    global $pagenow, $typenow;
+    $qv = &$query->query_vars;
+
+    $allowed = array();
+    foreach ( $this->options['image_column_cpt'] as $post_type => $val ) {
+        $allowed[]= $val;
+    }
+
+    if ( is_admin() && $pagenow == 'edit.php' && in_array( $typenow,  $allowed ) ){
+
+      if( ! isset( $qv['meta_query'] ) ){
+        $qv['meta_query'] = array();
+      }
+      if( !empty( $_GET['filter-wfi'] ) ) {
+
+        if ('yes' == $_GET['filter-wfi'] ) {
+            $qv['meta_query'][] = array(
+               'key'     => '_thumbnail_id',
+               'compare' => '>',
+               'value'   => 0,
+            );
+        } // end if yes
+
+        if ('no' == $_GET['filter-wfi'] ) {
+            $qv['meta_query'][] = array(
+               'key'     => '_thumbnail_id',
+               'compare' => 'NOT EXISTS',
+               'value'   => '',
+            );
+        } // end if no
+
+      } // end if not empty
+
+    } //end if is_admin
+
+  } // end function
+
 }

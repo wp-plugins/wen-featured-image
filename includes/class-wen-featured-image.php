@@ -87,7 +87,7 @@ class Wen_Featured_Image {
 	public function __construct() {
 
 		$this->wen_featured_image = 'wen-featured-image';
-		$this->version = '1.0.0';
+		$this->version = '1.0.1';
 
     $this->load_dependencies();
     $this->set_locale();
@@ -237,6 +237,11 @@ class Wen_Featured_Image {
 
     // Settings links in plugin listing
     $this->loader->add_filter( "plugin_action_links_" . WEN_FEATURED_IMAGE_BASE_FILE , $plugin_admin, 'add_links_in_plugin_listing' );
+
+    // Select for filtering
+    $this->loader->add_action( 'restrict_manage_posts', $plugin_admin, 'wfi_table_filtering' );
+    // Query manipulation according to selected value
+    $this->loader->add_filter( 'parse_query', $plugin_admin, 'wfi_query_filtering' );
 
 	}
 
