@@ -16,7 +16,7 @@
  * Plugin Name:       WEN Featured Image
  * Plugin URI:        https://wordpress.org/plugins/wen-featured-image/
  * Description:       Add featured image column in listings. You can easily add/change/remove featured image from the listing page.
- * Version:           1.0.1
+ * Version:           1.1
  * Author:            WEN Themes
  * Author URI:        http://wenthemes.com
  * License:           GPL-2.0+
@@ -37,11 +37,6 @@ define( 'WEN_FEATURED_IMAGE_BASENAME', basename( dirname( __FILE__ ) ) );
 define( 'WEN_FEATURED_IMAGE_BASE_FILE', plugin_basename( __FILE__ ) );
 define( 'WEN_FEATURED_IMAGE_DIR', rtrim( plugin_dir_path( __FILE__ ), '/' ) );
 define( 'WEN_FEATURED_IMAGE_URL', rtrim( plugin_dir_url( __FILE__ ), '/' ) );
-
-
-//  Load WEN Addons
-require_once WEN_FEATURED_IMAGE_DIR . '/wen-addons/wen_addons.php';
-
 
 /**
  * The code that runs during plugin activation.

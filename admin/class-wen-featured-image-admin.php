@@ -135,11 +135,7 @@ class Wen_Featured_Image_Admin {
    */
   function setup_menu(){
 
-    if( class_exists( 'WEN_Addons' ) ){
-      add_submenu_page( WEN_Addons::$menu_name, __( 'WEN Featured Image', 'wen-featured-image' ), __( 'WEN Featured Image', 'wen-featured-image' ), 'manage_options', 'wen-featured-image', array( &$this,'option_page_init' ) );
-    }else{
-      add_menu_page( __( 'WEN Featured Image', 'wen-featured-image' ), __( 'WEN Featured Image', 'wen-featured-image' ), 'manage_options', 'wen-featured-image', array( &$this,'option_page_init' ) );
-    }
+    add_options_page( __( 'WEN Featured Image', 'wen-featured-image' ), __( 'WEN Featured Image', 'wen-featured-image' ), 'manage_options', 'wen-featured-image', array( &$this,'option_page_init' ) );
 
   }
 
@@ -787,7 +783,7 @@ class Wen_Featured_Image_Admin {
     $url = add_query_arg( array(
         'page' => $this->wen_featured_image
       ),
-      admin_url( 'admin.php' )
+      admin_url( 'options-general.php' )
     );
     $settings_link = '<a href="' . esc_url( $url ) . '">'. esc_html( __( 'Settings', 'wen-featured-image' ) ) . '</a>';
     array_unshift( $links, $settings_link );
